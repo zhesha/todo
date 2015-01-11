@@ -1,0 +1,18 @@
+.header {
+    text-align: center;
+}
+.container {
+    max-width: 600px;
+}
+#todo-input {
+    width: 410px;
+}
+#todo-list {
+    margin-top: 20px;
+}
+.todo-item {
+    padding: 20px;
+}
+.todo-item.bg-danger {
+    text-align: center;
+}

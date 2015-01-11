@@ -1,8 +1,14 @@
 var View = (function () {
     return {
+        main: function () {
+            var main = this.append('Main', document.body);
+            main.querySelector('#todo-form').addEventListener('submit', function () {
+                Controller.add();
+            });
+        },
         append: function (templateName, el, data) {
             var template = window[templateName+'Template'];
-            el.appendChild(template.get(data));
+            return el.appendChild(template.get(data));
         }
     }
 })();

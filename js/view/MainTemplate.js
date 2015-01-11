@@ -8,7 +8,7 @@ var MainTemplate = (function () {
                 '</div>'+
                 '<div class="container">'+
                     '<div class="jumbotron">'+
-                        '<form class="form-inline">'+
+                        '<form id="todo-form" class="form-inline">'+
                             '<input id="todo-input" type="text" class="form-control" placeholder="What to do?"/>'+
                             '<input type="submit" value="+" class="form-control"/>'+
                         '</form>'+

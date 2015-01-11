@@ -1,5 +1,7 @@
 var todo = (function () {
     return {
-        start: function () {}
+        start: function () {
+            View.append('main', document.body);
+        }
     };
 })();

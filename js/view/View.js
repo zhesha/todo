@@ -6,6 +6,7 @@ var View = (function () {
             main.querySelector('#todo-form').addEventListener('submit', function (e) {
                 e.preventDefault();
                 Controller.add(this.querySelector('#todo-input').value);
+                this.querySelector('#todo-input').value = '';
             });
             listEl = main.querySelector('#todo-list');
         },

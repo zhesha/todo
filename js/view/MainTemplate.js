@@ -13,7 +13,7 @@ var MainTemplate = (function () {
                             '<input type="submit" value="+" class="form-control"/>'+
                         '</form>'+
                         '<div id="todo-list">'+
-                            '<div class="todo-item bg-warning">ToDo list is empty</div>'+
+                            //'<div class="todo-item bg-warning">ToDo list is empty</div>'+
                         '</div>'+
                     '</div>'+
                 '</div>';

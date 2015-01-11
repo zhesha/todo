@@ -1,7 +1,7 @@
 var Controller = (function () {
     return {
-        add: function () {
-
+        add: function (text) {
+            Model.add(text);
         }
     }
 })();

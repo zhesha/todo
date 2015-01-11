@@ -6,12 +6,14 @@
 }
 #todo-input {
     width: 410px;
+    margin-right: 5px;
 }
 #todo-list {
     margin-top: 20px;
 }
 .todo-item {
-    padding: 20px;
+    padding: 5px 20px;
+    margin: 10px 0;
 }
 .todo-item.bg-danger {
     text-align: center;

@@ -1,5 +1,14 @@
 var View = (function () {
     var model, listEl;
+
+    function getParentByClass (el, className) {
+        if (el.classList.contains(className)) {
+            return el;
+        } else {
+            return el.classList.contains('el') ? null : getParentByClass(el.parentNode, className);
+        }
+    }
+
     return {
         init: function (bind) {
             var main = this.append('Main', document.body);
@@ -10,6 +19,12 @@ var View = (function () {
                 this.querySelector('#todo-input').value = '';
             });
             listEl = main.querySelector('#todo-list');
+            listEl.addEventListener('click', function (e) {
+                var el = e.target;
+                if (el.classList.contains('do-check')) {
+                    model.toggleChecked(getParentByClass(el, 'todo-item').getAttribute('data-id'));
+                }
+            });
         },
         append: function (templateName, el, data) {
             var template = window[templateName+'Template'];
@@ -17,6 +32,16 @@ var View = (function () {
         },
         addItem: function (item) {
             this.append('Todo', listEl, item);
+        },
+        setChecked: function (id, value) {
+            var el = listEl.querySelector('.todo-item[data-id="' + id + '"]');
+            if (value) {
+                el.classList.add('checked');
+                el.querySelector('input[type="checkbox"]').checked = true;
+            } else {
+                el.classList.remove('checked');
+                el.querySelector('input[type="checkbox"]').checked = false;
+            }
         }
     }
 })();

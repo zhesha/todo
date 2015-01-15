@@ -22,6 +22,9 @@
     margin-right: 6px;
     display: none;
 }
+.checked span{
+    text-decoration: line-through;
+}
 .todo-item:hover .todo-checkbox, .todo-item:hover .close {
     display: block;
 }

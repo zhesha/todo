@@ -1,7 +1,7 @@
 var todo = (function () {
     return {
         start: function () {
-            View.main();
+            Controller.init();
         }
     };
 })();

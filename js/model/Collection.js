@@ -1,12 +1,12 @@
 var Collection = (function () {
     var list = [];
-    return {
-        add: function (item) {
-            if (item instanceof Item) {
+    return function (entity) {
+        this.add = function (item) {
+            if (item instanceof entity) {
                 list.push(item);
                 return item;
             } else {
-                item = new Item(arguments[0], arguments[1]);
+                item = new entity(arguments[0], arguments[1]);
                 list.push(item);
                 return item;
             }

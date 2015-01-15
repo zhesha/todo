@@ -1,11 +1,12 @@
 var View = (function () {
-    var listEl;
+    var model, listEl;
     return {
-        main: function () {
+        init: function (bind) {
             var main = this.append('Main', document.body);
+            model = bind;
             main.querySelector('#todo-form').addEventListener('submit', function (e) {
                 e.preventDefault();
-                Model.add(this.querySelector('#todo-input').value);
+                model.add(this.querySelector('#todo-input').value);
                 this.querySelector('#todo-input').value = '';
             });
             listEl = main.querySelector('#todo-list');

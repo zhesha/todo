@@ -5,7 +5,7 @@ var View = (function () {
             var main = this.append('Main', document.body);
             main.querySelector('#todo-form').addEventListener('submit', function (e) {
                 e.preventDefault();
-                Controller.add(this.querySelector('#todo-input').value);
+                Model.add(this.querySelector('#todo-input').value);
                 this.querySelector('#todo-input').value = '';
             });
             listEl = main.querySelector('#todo-list');

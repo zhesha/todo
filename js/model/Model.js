@@ -36,6 +36,11 @@ var Model = (function () {
             store.eachById(function (id) {
                 model.set(id, field, value);
             });
+        };
+
+        this.del = function (id) {
+            store.del(id);
+            events['delete'] && events['delete'](id);
         }
     }
 })();

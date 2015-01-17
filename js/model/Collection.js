@@ -23,5 +23,8 @@ var Collection = (function () {
                 callback(i);
             }
         };
+        this.del = function (id) {
+            delete list[id];
+        }
     }
 })();

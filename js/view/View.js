@@ -26,6 +26,9 @@ var View = (function () {
                 if (el.classList.contains('do-check')) {
                     model.toggleChecked(getParentByClass(el, 'todo-item').getAttribute('data-id'));
                 }
+                if (el.classList.contains('do-delete')) {
+                    model.del(getParentByClass(el, 'todo-item').getAttribute('data-id'));
+                }
             });
             checkAll = main.querySelector('.do-check-all');
             checkAll.addEventListener('change', function () {
@@ -42,6 +45,7 @@ var View = (function () {
                     checkAll.checked = false
                 }
             });
+            model.on('delete', function (id) {view.remove(id);});
         },
         append: function (templateName, el, data) {
             var template = window[templateName+'Template'];
@@ -49,6 +53,10 @@ var View = (function () {
         },
         addItem: function (item) {
             this.append('Todo', listEl, item);
+        },
+        remove: function (id) {
+            var el = listEl.querySelector('.todo-item[data-id="' + id + '"]');
+            el.remove();
         },
         setChecked: function (id, value) {
             var el = listEl.querySelector('.todo-item[data-id="' + id + '"]'),

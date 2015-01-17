@@ -16,6 +16,12 @@ var Collection = (function () {
         };
         this.set = function (id, field, value) {
             list[id].set(field, value);
-        }
+        };
+        this.eachById = function (callback) {
+            var i;
+            for (i in list) {
+                callback(i);
+            }
+        };
     }
 })();

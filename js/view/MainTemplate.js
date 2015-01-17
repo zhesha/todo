@@ -9,6 +9,7 @@ var MainTemplate = (function () {
                 '<div class="container">'+
                     '<div class="jumbotron">'+
                         '<form id="todo-form" class="form-inline">'+
+                            '<input type="checkbox" class="do-check-all">' +
                             '<input id="todo-input" type="text" class="form-control" placeholder="What to do?"/>'+
                             '<input type="submit" value="+" class="form-control"/>'+
                         '</form>'+

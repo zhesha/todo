@@ -5,8 +5,8 @@
     max-width: 600px;
 }
 #todo-input {
-    width: 410px;
-    margin-right: 5px;
+    width: 393px;
+    margin: 0 5px;
 }
 #todo-list {
     margin-top: 20px;
@@ -21,9 +21,6 @@
 .close {
     margin-right: 6px;
     display: none;
-}
-.checked span{
-    text-decoration: line-through;
 }
 .todo-item:hover .todo-checkbox, .todo-item:hover .close {
     display: block;

@@ -12,7 +12,8 @@ var View = (function () {
     return {
         init: function (bind) {
             var view = this;
-            var main = this.append('Main', document.body);
+            var main = this.append('Main', document.body),
+                checkAll;
             model = bind;
             main.querySelector('#todo-form').addEventListener('submit', function (e) {
                 e.preventDefault();
@@ -26,9 +27,21 @@ var View = (function () {
                     model.toggleChecked(getParentByClass(el, 'todo-item').getAttribute('data-id'));
                 }
             });
+            checkAll = main.querySelector('.do-check-all');
+            checkAll.addEventListener('change', function () {
+                model.setAll('checked', this.checked);
+            });
 
-            model.on('add', function (newItem) {view.addItem(newItem);});
-            model.on('checked', function (id, newValue) {view.setChecked(id, newValue);});
+            model.on('add', function (newItem) {
+                view.addItem(newItem);
+                checkAll.checked = false;
+            });
+            model.on('checked', function (id, newValue) {
+                view.setChecked(id, newValue);
+                if (!newValue) {
+                    checkAll.checked = false
+                }
+            });
         },
         append: function (templateName, el, data) {
             var template = window[templateName+'Template'];
@@ -38,12 +51,15 @@ var View = (function () {
             this.append('Todo', listEl, item);
         },
         setChecked: function (id, value) {
-            var el = listEl.querySelector('.todo-item[data-id="' + id + '"]');
+            var el = listEl.querySelector('.todo-item[data-id="' + id + '"]'),
+                wrapper = el.querySelector('.wrapper');
             if (value) {
-                el.classList.add('checked');
+                wrapper.classList.remove('bg-primary');
+                wrapper.classList.add('bg-success');
                 el.querySelector('input[type="checkbox"]').checked = true;
             } else {
-                el.classList.remove('checked');
+                wrapper.classList.remove('bg-success');
+                wrapper.classList.add('bg-primary');
                 el.querySelector('input[type="checkbox"]').checked = false;
             }
         }

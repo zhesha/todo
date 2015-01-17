@@ -14,14 +14,28 @@ var Model = (function () {
         };
 
         this.toggleChecked = function (id) {
-            var newValue = !store.get(id, 'checked');
-            store.set(id, 'checked', newValue);
-            events['checked'] && events['checked'](id, newValue);
+            var newValue = !this.get(id, 'checked');
+            this.set(id, 'checked', newValue);
+        };
+
+        this.get = function (id, field) {
+            return store.get(id, field);
+        };
+
+        this.set = function (id, field, value) {
+            store.set(id, field, value);
+            return events[field] && events[field](id, value);
         };
 
         this.on = function (event, callback) {
             events[event] = callback;
-        }
+        };
 
+        this.setAll = function (field, value) {
+            var model = this;
+            store.eachById(function (id) {
+                model.set(id, field, value);
+            });
+        }
     }
 })();

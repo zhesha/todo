@@ -1,5 +1,5 @@
 var Model = (function () {
-    var store;
+    var store, events = {};
     return function (entity) {
 
         init();
@@ -10,13 +10,18 @@ var Model = (function () {
 
         this.add = function (item) {
             var newItem = store.add(item);
-            View.addItem(newItem);
+            events['add'] && events['add'](newItem);
         };
 
         this.toggleChecked = function (id) {
             var newValue = !store.get(id, 'checked');
             store.set(id, 'checked', newValue);
-            View.setChecked(id, newValue);
+            events['checked'] && events['checked'](id, newValue);
+        };
+
+        this.on = function (event, callback) {
+            events[event] = callback;
         }
+
     }
 })();

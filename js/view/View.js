@@ -11,6 +11,7 @@ var View = (function () {
 
     return {
         init: function (bind) {
+            var view = this;
             var main = this.append('Main', document.body);
             model = bind;
             main.querySelector('#todo-form').addEventListener('submit', function (e) {
@@ -25,6 +26,9 @@ var View = (function () {
                     model.toggleChecked(getParentByClass(el, 'todo-item').getAttribute('data-id'));
                 }
             });
+
+            model.on('add', function (newItem) {view.addItem(newItem);});
+            model.on('checked', function (id, newValue) {view.setChecked(id, newValue);});
         },
         append: function (templateName, el, data) {
             var template = window[templateName+'Template'];

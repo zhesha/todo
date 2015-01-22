@@ -29,6 +29,9 @@ var View = (function () {
                 if (el.classList.contains('do-delete')) {
                     model.del(getParentByClass(el, 'todo-item').getAttribute('data-id'));
                 }
+                if (el.classList.contains('do-edit')) {
+                    view.prepareForEdit(getParentByClass(el, 'todo-item').getAttribute('data-id'));
+                }
             });
             checkAll = main.querySelector('.do-check-all');
             checkAll.addEventListener('change', function () {
@@ -70,6 +73,27 @@ var View = (function () {
                 wrapper.classList.add('bg-primary');
                 el.querySelector('input[type="checkbox"]').checked = false;
             }
+        },
+        prepareForEdit: function (id) {
+            var el = listEl.querySelector('.todo-item[data-id="' + id + '"]'),
+                text = el.querySelector('.todo-text'),
+                input = document.createElement('INPUT');
+            input.className = 'edit';
+            input.value = model.get(id, 'text');
+            input.addEventListener('blur', function () {
+                input.remove();
+                text.innerText = model.get(id, 'text');
+                text.style.display = 'inline';
+            });
+            input.addEventListener('keydown', function (e) {
+                if (e.keyCode == 13) {
+                    model.set(id, 'text', input.value);
+                    input.blur();
+                }
+            });
+            el.querySelector('.wrapper').appendChild(input);
+            text.style.display = 'none';
+            input.focus();
         }
     }
 })();

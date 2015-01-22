@@ -17,6 +17,9 @@ var Item = (function () {
         this.getText = function () {
             return text;
         };
+        this.setText = function (value) {
+            text = value;
+        };
         this.getId = function () {
             return id;
         };

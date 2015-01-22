@@ -11,8 +11,19 @@
 #todo-list {
     margin-top: 20px;
 }
+.wrapper {
+    height: 24px;
+}
 .todo-item {
     margin: 10px 0;
+}
+.todo-item .edit{
+    position: relative;
+    float: left;
+    left: 0;
+    height: 20px;
+    margin: 2px 0 2px 22px;
+    color: #000;
 }
 .todo-text {
     margin-left: 24px;
